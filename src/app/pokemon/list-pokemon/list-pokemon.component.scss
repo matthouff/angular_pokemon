@@ -1,0 +1,65 @@
+.add-button {
+  background-color: #fff0;
+  color: #00aaff;
+  padding: 5px 10px;
+  border: 2px solid #00aaff;
+  border-radius: 50px;
+  position: fixed;
+  top: 150px;
+  right: 50px;
+  font-size: 17px;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background-color: #00aaff;
+  }
+}
+
+h1 {
+  text-align: center;
+  font-size: 55px;
+  margin-bottom: 50px;
+}
+
+.conteneur {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  gap: 30px;
+
+  .item {
+    box-shadow: 2px 2px 4px 1px #0002;
+    border-radius: 25px;
+    display: flex;
+    gap: 10px;
+    background-color: #fff;
+    cursor: pointer;
+
+    .sous-item {
+      padding: 15px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .types {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+
+        span {
+          padding: 5px 15px;
+          border-radius: 500px;
+          box-shadow: 1px 1px 3px #0006;
+        }
+      }
+    }
+
+    .sous-item p:first-child {
+      font-size: 26px;
+      margin-bottom: 0;
+    }
+  }
+}

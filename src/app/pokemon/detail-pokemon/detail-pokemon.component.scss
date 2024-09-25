@@ -1,0 +1,96 @@
+h1 {
+  text-align: center;
+  font-size: 55px;
+  margin-bottom: 50px;
+}
+
+.example-card {
+  width: 50%;
+  padding: 30px 30px 0;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 5px 5px 10px #00000025;
+  border-radius: 30px;
+
+  button {
+    cursor: pointer;
+
+    &.retour {
+      background: none;
+      border: none;
+      color: #0080ff;
+    }
+  }
+
+  hr {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+  }
+
+  .action-details {
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+
+    button {
+      color: #fff;
+      background-color: #0080ff;
+      padding: 5px 10px;
+      border-radius: 50px;
+      border: none;
+
+      &:last-child {
+        background-color: #ba1a1a;
+      }
+    }
+  }
+
+  .card-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+
+    .header {
+      width: 100%;
+      height: 100%;
+
+      .listContent {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .left {
+          font-weight: bold;
+        }
+
+        .left,
+        .right {
+          display: flex;
+          gap: 10px;
+          width: 100%;
+          flex-direction: column;
+          align-content: space-between;
+          height: 100%;
+        }
+
+        .right p:last-child {
+          font-style: italic;
+        }
+
+        .right .types {
+          width: 100%;
+          display: flex;
+          gap: 10px;
+        }
+      }
+    }
+  }
+}

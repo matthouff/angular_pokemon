@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+
+  .chips {
+    border-radius: 50px;
+    padding: 5px 10px;
+  }
+}

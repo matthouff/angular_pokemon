@@ -1,0 +1,40 @@
+@if(pokemon){
+<h1>{{pokemon.name}}</h1>
+<div class="example-card">
+  <button class="retour" (click)="goToPokemonList()" mat-button>&lt; retour</button>
+  <div class="card-content">
+    <img src={{pokemon.picture}} alt="Photo of a Shiba Inu">
+    <!-- Header row -->
+    <div class="header">
+      <div class="listContent">
+        <div class="left">
+          <p>Nom</p>
+          <p>HP</p>
+          <p>CP</p>
+          <p>Type</p>
+          <p>Date de création</p>
+        </div>
+        <div class="right">
+          <p>{{ pokemon.name }}</p>
+          <p>{{ pokemon.hp }}</p>
+          <p>{{ pokemon.cp }}</p>
+          <div class="types">
+            @for(type of pokemon.types; track $index){
+            <div class="chips" [style]="type | pokemonTypesColor">{{type}}</div>
+            }
+          </div>
+          <p>{{ pokemon.created | date: "dd/MM/YYYY" }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="action-details">
+    <button (click)="goToEdit()" mat-button>Modifier</button>
+    <button (click)="onDeletePokemon(pokemon)" mat-button>Supprimer</button>
+  </div>
+</div>
+}
+@else{
+<h1>Loading...</h1>
+}

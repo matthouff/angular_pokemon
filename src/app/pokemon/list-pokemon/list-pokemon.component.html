@@ -1,0 +1,26 @@
+<button class="add-button" (click)="goToAddForm()">+ Ajouter un pokemon</button>
+<h1>Pokédex</h1>
+<div class="conteneur">
+  @for (pokemon of pokemonList; track $index) {
+  <div (click)="goToPokemon(pokemon.id)" class="degrade" pkmnBorderCard [hoverColor]="pokemon.types">
+    <div class="item">
+      <img src={{pokemon.picture}} alt="" srcset="">
+      <div class="sous-item">
+        <p>{{pokemon.name}}</p>
+        <!-- Les pipes comme ci dessous permettent de formater une data plus simplement -->
+        <!-- Les pipes sont définis par "| date" par exemple ("|" ne signifie pas "ou") -->
+        <!-- Pour utiliser les pipes il faut importer la classe correspondante -->
+        <p>{{pokemon.created | date: "dd/MM/YYYY" | uppercase}}</p>
+
+        <div class="types">
+          @for (type of pokemon.types; track $index) {
+          <div class="chips" [style]="type | pokemonTypesColor">
+            {{type}}
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
