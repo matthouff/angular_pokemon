@@ -37,6 +37,6 @@ export class ListPokemonComponent implements OnInit {
   }
 
   goToAddForm() {
-
+    this.route.navigate(["pokemon/edit"])
   }
 }

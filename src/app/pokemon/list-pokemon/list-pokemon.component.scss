@@ -1,18 +1,27 @@
 .add-button {
-  background-color: #fff0;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px #00000033;
   color: #00aaff;
   padding: 5px 10px;
   border: 2px solid #00aaff;
   border-radius: 50px;
   position: fixed;
-  top: 150px;
+  top: 100px;
   right: 50px;
   font-size: 17px;
   cursor: pointer;
 
+  &::before {
+    content: "+ Ajouter";
+  }
+
   &:hover {
     color: #fff;
     background-color: #00aaff;
+  }
+
+  @media screen and (max-width: 1200px) {
+    content: "Ajouter";
   }
 }
 
@@ -29,6 +38,19 @@ h1 {
   margin-right: auto;
   width: 70%;
   gap: 30px;
+
+  @media screen and (max-width: 1600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 1200px) {
+    width: 90%;
+  }
+
+  @media screen and (max-width: 992px) {
+    max-width: 576px;
+    grid-template-columns: 1fr;
+  }
 
   .item {
     box-shadow: 2px 2px 4px 1px #0002;

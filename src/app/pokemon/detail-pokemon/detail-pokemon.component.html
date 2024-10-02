@@ -30,8 +30,8 @@
   </div>
   <hr />
   <div class="action-details">
-    <button (click)="goToEdit()" mat-button>Modifier</button>
-    <button (click)="onDeletePokemon(pokemon)" mat-button>Supprimer</button>
+    <button (click)="goToEdit(pokemon.id)" mat-button>Modifier</button>
+    <button (click)="onDeletePokemon(pokemon.id)" mat-button>Supprimer</button>
   </div>
 </div>
 }

@@ -31,13 +31,13 @@ export class DetailPokemonComponent implements OnInit {
     this.route.navigate(["/pokemon-list"])
   }
 
-  goToEdit() {
-
+  goToEdit(pokemonId: number) {
+    this.route.navigate(["/pokemon/edit", pokemonId])
   }
 
-  onDeletePokemon(pokemon: Pokemon): void {
+  onDeletePokemon(pokemonId: number): void {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce Pokémon ?")) {
-      this.pokemonService.deletePokemon(pokemon.id).subscribe(() => {
+      this.pokemonService.deletePokemon(pokemonId).subscribe(() => {
         // Suppression réussie, retirer le Pokémon de l'affichage
         this.pokemon = undefined;
         this.route.navigate(["/pokemon-list"])
