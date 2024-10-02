@@ -8,48 +8,62 @@ export class PokemonTypesColorPipe implements PipeTransform {
 
   transform(type: string): string {
 
-    let color: string;
 
-    switch (type) {
-      case 'Feu':
-        color = 'orange';
-        break;
-      case 'Eau':
-        color = 'aqua';
-        break;
-      case 'Plante':
-        color = 'green';
-        break;
-      case 'Insecte':
-        color = '#daa26a';
-        break;
-      case 'Normal':
-        color = '#CCCCCC';
-        break;
-      case 'Vol':
-        color = '#91bbff';
-        break;
-      case 'Poison':
-        color = '#db92e3';
-        break;
-      case 'Fée':
-        color = 'pink';
-        break;
-      case 'Psy':
-        color = '#8e4ace';
-        break;
-      case 'Electrik':
-        color = 'yellow';
-        break;
-      case 'Combat':
-        color = '#ba1a1a';
-        break;
-      default:
-        color = '#CCCCCC';
-        break;
-    }
 
-    return `background-color: ${color}`;
+    // Supprime le caractère '#' s'il est présent
+    let color: string = type.replace('#', '');
+
+    // Convertit les valeurs hexadécimales en RGB
+    const r = parseInt(color.substring(0, 2), 16);
+    const g = parseInt(color.substring(2, 4), 16);
+    const b = parseInt(color.substring(4, 6), 16);
+
+    // Calcul de la luminosité (méthode standard)
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+    color = brightness < 128 ? "#FFFFFF" : "#000000";
+
+    // switch (type) {
+    //   case 'feu':
+    //     color = 'orange';
+    //     break;
+    //   case 'eau':
+    //     color = 'aqua';
+    //     break;
+    //   case 'plante':
+    //     color = 'green';
+    //     break;
+    //   case 'insecte':
+    //     color = '#daa26a';
+    //     break;
+    //   case 'normal':
+    //     color = '#CCCCCC';
+    //     break;
+    //   case 'vol':
+    //     color = '#91bbff';
+    //     break;
+    //   case 'poison':
+    //     color = '#db92e3';
+    //     break;
+    //   case 'fée':
+    //     color = 'pink';
+    //     break;
+    //   case 'psy':
+    //     color = '#8e4ace';
+    //     break;
+    //   case 'electrik':
+    //     color = 'yellow';
+    //     break;
+    //   case 'combat':
+    //     color = '#ba1a1a';
+    //     break;
+    //   default:
+    //     color = '#CCCCCC';
+    //     break;
+    // }
+
+    // Si la luminosité est inférieure à 128, on considère la couleur comme foncée
+    return `background-color: ${type}; color: ${color}`;
 
   }
 

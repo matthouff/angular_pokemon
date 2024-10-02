@@ -13,9 +13,9 @@
         <p>{{pokemon.created | date: "dd/MM/YYYY" | uppercase}}</p>
 
         <div class="types">
-          @for (type of pokemon.types; track $index) {
-          <div class="chips" [style]="type | pokemonTypesColor">
-            {{type}}
+          @for (type of pokemon.types; track type.id) {
+          <div class="chips" [style]="type.color | pokemonTypesColor">
+            {{type?.name}}
           </div>
           }
         </div>

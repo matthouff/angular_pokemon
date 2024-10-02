@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { POKEMONS } from '../mock/mock-pokemon-list';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PokemonTypesColorPipe } from '../pipes/pokemon-types-color.pipe';
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { DirectivesModule } from '../../directives/directives.module';
+import { Pokemon } from '../pokemon';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'app-list-pokemon',
@@ -15,15 +16,21 @@ import { DirectivesModule } from '../../directives/directives.module';
     UpperCasePipe,
   ],
   templateUrl: './list-pokemon.component.html',
-  styleUrl: './list-pokemon.component.scss'
+  styleUrl: './list-pokemon.component.scss',
+  providers: [PokemonService]
 })
-export class ListPokemonComponent {
+export class ListPokemonComponent implements OnInit {
 
-  constructor(private route: Router) {
+  pokemonList: Pokemon[] = [];
 
+  constructor(private pokemonService: PokemonService, private route: Router) {
   }
 
-  pokemonList = POKEMONS
+  ngOnInit(): void {
+    this.pokemonService.getPokemons().subscribe((data) => {
+      this.pokemonList = data;
+    });
+  }
 
   goToPokemon(pokemonId: number) {
     this.route.navigate(["/pokemon", pokemonId])

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { POKEMONS } from '../mock/mock-pokemon-list';
 import { Pokemon } from '../pokemon';
 import { DatePipe } from '@angular/common';
 import { PokemonTypesColorPipe } from '../pipes/pokemon-types-color.pipe';
+import { PokemonService } from '../../services/pokemon.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-detail-pokemon',
@@ -13,13 +14,17 @@ import { PokemonTypesColorPipe } from '../pipes/pokemon-types-color.pipe';
   styleUrl: './detail-pokemon.component.scss'
 })
 export class DetailPokemonComponent implements OnInit {
-  pokemon: Pokemon | undefined = undefined;
+  pokemon: Pokemon | undefined;
 
-  constructor(private url: ActivatedRoute, private route: Router) { }
+  constructor(private url: ActivatedRoute, private route: Router, private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
     const pokemonId = this.url.snapshot.paramMap.get("id")
-    this.pokemon = POKEMONS.find(pokemon => pokemon.id == +pokemonId!)
+    if (pokemonId) {
+      this.pokemonService.getPokemonById(+pokemonId).subscribe((data) => {
+        this.pokemon = data;
+      })
+    }
   }
 
   goToPokemonList() {
@@ -30,7 +35,14 @@ export class DetailPokemonComponent implements OnInit {
 
   }
 
-  onDeletePokemon(test: Pokemon): void {
+  onDeletePokemon(pokemon: Pokemon): void {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce Pokémon ?")) {
+      this.pokemonService.deletePokemon(pokemon.id).subscribe(() => {
+        // Suppression réussie, retirer le Pokémon de l'affichage
+        this.pokemon = undefined;
+        this.route.navigate(["/pokemon-list"])
+      });
+    }
 
   }
 }
