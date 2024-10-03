@@ -29,7 +29,7 @@ export class PokemonService {
   }
 
   updatePokemon(id: number, pokemon: Pokemon): Observable<Pokemon> {
-    return this.http.put<Pokemon>(`${this.apiPokemonUrl}/${id}`, pokemon);
+    return this.http.put<Pokemon>(`${this.apiPokemonUrl}/edit/${id}`, pokemon);
   }
 
   deletePokemon(id: number): Observable<void> {

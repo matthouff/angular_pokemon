@@ -1,0 +1,53 @@
+@if (pokemon) {
+<div class="container-form">
+  <h1>{{isAddForm ? "Ajouter un Pokémon" : pokemon.name}}</h1>
+  @if (pokemon.picture) {
+  <div>
+    <img [src]="pokemon.picture" [alt]="pokemon.name">
+  </div>
+  }
+  <form action="">
+    <input type="text" required [(ngModel)]="pokemon.name" name="name" #name="ngModel">
+    @if (isAddForm) {
+    <input (change)="handleChangeImage(picture)" type="number" matInput required [(ngModel)]="picture" name="picture"
+      #picture="ngModel">
+    }
+    <input matInput type="number" required pattern="^[0-9]{1,3}$" [(ngModel)]="pokemon.hp" name="hp" #hp="ngModel">
+    <input matInput type="number" required pattern="^[0-9]{1,2}$" [(ngModel)]="pokemon.cp" name="cp" #cp="ngModel">
+
+    <div class="container-types">
+      <label>Types {{!isAddForm ? "de " + pokemon.name : ""}}</label>
+      <div class="types types-list-edit">
+        @for (type of pokemon.types; track $index) {
+        <div class="chips" [attr.for]="type" [style]="type.color | pokemonTypesColor">
+          {{type.name}}
+          @if (pokemon.types.length > 1) {
+          <button type="button" style="cursor: pointer;" (click)="removeType(type)">
+            x
+          </button>
+          }
+        </div>
+        }
+      </div>
+      <hr style="margin-bottom: 10px;" />
+      <div class="types">
+        @for (type of types; track $index) {
+        @if (!hasType(type)) {
+        <div>
+          <button type="button" style="cursor: pointer;" (click)="selectType(type)" class="chips" [attr.for]="type"
+            [style]="isTypeValid(type) ? (type.color | pokemonTypesColor): 'background-color: grey; opacity: 0.3; cursor: default;'">
+            {{type.name}}
+          </button>
+        </div>
+        }
+        }
+      </div>
+    </div>
+
+    <button type="button" (click)="onSubmit()">{{isAddForm ? "Ajouter" : "Modifier"}}</button>
+  </form>
+</div>
+}
+@else {
+<h1>Loading</h1>
+}

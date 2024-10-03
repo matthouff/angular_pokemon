@@ -10,7 +10,7 @@
         <!-- Les pipes comme ci dessous permettent de formater une data plus simplement -->
         <!-- Les pipes sont définis par "| date" par exemple ("|" ne signifie pas "ou") -->
         <!-- Pour utiliser les pipes il faut importer la classe correspondante -->
-        <p>{{pokemon.created | date: "dd/MM/YYYY" | uppercase}}</p>
+        <p>{{pokemon.createdAt | date: "dd/MM/YYYY" | uppercase}}</p>
 
         <div class="types">
           @for (type of pokemon.types; track type.id) {

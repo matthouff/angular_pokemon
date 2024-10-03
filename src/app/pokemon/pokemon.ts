@@ -5,7 +5,8 @@ interface PokemonI {
   cp: number;
   picture: string;
   types: Type[];
-  created: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 interface TypeI {
@@ -21,7 +22,8 @@ export class Pokemon implements PokemonI {
   cp: number;
   picture: string;
   types: Type[];
-  created: Date;
+  createdAt: Date;
+  updatedAt: Date;
 
   constructor(
     name: string = "",
@@ -29,14 +31,16 @@ export class Pokemon implements PokemonI {
     cp: number = 10,
     picture: string = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/xxx.png",
     types: Type[] = [],
-    created: Date = new Date()
+    createdAt: Date = new Date(),
+    updatedAt: Date = new Date()
   ) {
     this.hp = hp
     this.cp = cp
     this.name = name
     this.picture = picture
     this.types = types
-    this.created = created
+    this.createdAt = createdAt
+    this.updatedAt = updatedAt
   }
 }
 
