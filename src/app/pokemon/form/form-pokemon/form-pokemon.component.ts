@@ -71,13 +71,12 @@ export class FormPokemonComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('coucou1');
     if (this.isAddForm) {
       this.pokemonService.createPokemon(this.pokemon).subscribe((response) => {
         this.route.navigate(["/pokemon", response.id])
       })
     } else {
-      this.pokemonService.updatePokemon(this.pokemon.id, this.pokemon).subscribe((response) => {
+      this.pokemonService.updatePokemon(this.pokemon).subscribe((response) => {
         console.log(response);
         this.route.navigate(["/pokemon", response.id])
       })
