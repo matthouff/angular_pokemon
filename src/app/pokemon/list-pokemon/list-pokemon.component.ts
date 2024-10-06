@@ -5,6 +5,7 @@ import { DatePipe, UpperCasePipe } from '@angular/common';
 import { DirectivesModule } from '../../directives/directives.module';
 import { Pokemon } from '../pokemon';
 import { PokemonService } from '../../services/pokemon.service';
+import { SearchPokemonComponent } from "../search-pokemon/search-pokemon.component";
 
 @Component({
   selector: 'app-list-pokemon',
@@ -14,6 +15,7 @@ import { PokemonService } from '../../services/pokemon.service';
     PokemonTypesColorPipe,
     DatePipe,
     UpperCasePipe,
+    SearchPokemonComponent
   ],
   templateUrl: './list-pokemon.component.html',
   styleUrl: './list-pokemon.component.scss',

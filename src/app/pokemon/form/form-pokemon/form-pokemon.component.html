@@ -1,51 +1,70 @@
 @if (pokemon) {
+<h1>{{isAddForm ? "Ajouter un Pokémon" : pokemon.name}}</h1>
 <div class="container-form">
-  <h1>{{isAddForm ? "Ajouter un Pokémon" : pokemon.name}}</h1>
   @if (pokemon.picture) {
-  <div>
+  <div class="image-container">
     <img [src]="pokemon.picture" [alt]="pokemon.name">
   </div>
   }
-  <form action="">
-    <input type="text" required [(ngModel)]="pokemon.name" name="name" #name="ngModel">
-    @if (isAddForm) {
-    <input (change)="handleChangeImage(picture)" type="number" matInput required [(ngModel)]="picture" name="picture"
-      #picture="ngModel">
-    }
-    <input matInput type="number" required pattern="^[0-9]{1,3}$" [(ngModel)]="pokemon.hp" name="hp" #hp="ngModel">
-    <input matInput type="number" required pattern="^[0-9]{1,2}$" [(ngModel)]="pokemon.cp" name="cp" #cp="ngModel">
-
-    <div class="container-types">
-      <label>Types {{!isAddForm ? "de " + pokemon.name : ""}}</label>
-      <div class="types types-list-edit">
-        @for (type of pokemon.types; track $index) {
-        <div class="chips" [attr.for]="type" [style]="type.color | pokemonTypesColor">
-          {{type.name}}
-          @if (pokemon.types.length > 1) {
-          <button type="button" style="cursor: pointer;" (click)="removeType(type)">
-            x
-          </button>
+  <form (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+    <div class="left">
+      <div class="label-input">
+        <label for="name">Nom*</label>
+        <input required id="name" type="text" required [(ngModel)]="pokemon.name" name="name" #name="ngModel">
+      </div>
+      @if (isAddForm) {
+      <div class="label-input">
+        <label for="image">Numéro du pokémon*</label>
+        <input required id="image" (change)="handleChangeImage(picture)" type="number" required [(ngModel)]="picture"
+          name="picture" #picture="ngModel">
+      </div>
+      }
+      <div class="label-input">
+        <label for="hp">Points de vie*</label>
+        <input required id="hp" type="number" required pattern="^[0-9]{1,3}$" [(ngModel)]="pokemon.hp" name="hp"
+          #hp="ngModel">
+      </div>
+      <div class="label-input">
+        <label for="cp">Points de dégâts*</label>
+        <input id="cp" type="number" required pattern="^[0-9]{1,2}$" [(ngModel)]="pokemon.cp" name="cp" #cp="ngModel">
+      </div>
+    </div>
+    <div class="right">
+      <div class="container-types">
+        <label>Types {{!isAddForm ? "de " + pokemon.name : ""}}*</label>
+        <div class="types types-list-edit">
+          @for (type of pokemon.types; track $index) {
+          <div class="chips" [attr.for]="type.color" [style]="type.color | pokemonTypesColor">
+            {{type.name}}
+            @if (pokemon.types.length > 1) {
+            <button class="cross-type" type="button" style="cursor: pointer;" (click)="removeType(type)">
+              x
+            </button>
+            }
+          </div>
           }
         </div>
-        }
-      </div>
-      <hr style="margin-bottom: 10px;" />
-      <div class="types">
-        @for (type of types; track $index) {
-        @if (!hasType(type)) {
-        <div>
-          <button type="button" style="cursor: pointer;" (click)="selectType(type)" class="chips" [attr.for]="type"
-            [style]="isTypeValid(type) ? (type.color | pokemonTypesColor): 'background-color: grey; opacity: 0.3; cursor: default;'">
+        <hr style="margin-bottom: 10px;" />
+        <div class="types">
+          @for (type of typesList; track type.name) {
+          @if (!hasType(type)) {
+          <button type="button" style="cursor: pointer;" (click)="selectType(type)" class="chips"
+            [attr.for]="type.color"
+            [style]="isTypeValid(type) ? (type.color | pokemonTypesColor): 'background-color: grey; opacity: 0.3; cursor: default; border: none;'">
             {{type.name}}
           </button>
+          }
+          }
         </div>
-        }
-        }
       </div>
     </div>
 
-    <button type="button" (click)="onSubmit()">{{isAddForm ? "Ajouter" : "Modifier"}}</button>
   </form>
+  <button [disabled]="!pokemonForm.form.valid" class="submit" type="submit" (click)="onSubmit()">{{isAddForm ? "Ajouter"
+    : "Modifier"}}</button>
+  <p [hidden]="pokemonForm.form.valid || pokemonForm.form.pristine" style="color: #ba1a1a; font-size: 14px;">
+    Des champs ne sont pas valides
+  </p>
 </div>
 }
 @else {

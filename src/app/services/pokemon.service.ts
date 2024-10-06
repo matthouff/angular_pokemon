@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { Pokemon, Type } from '../pokemon/pokemon';
 
 @Injectable({
@@ -11,6 +11,11 @@ export class PokemonService {
   private apiTypeUrl = 'http://localhost:/api/type';
 
   constructor(private http: HttpClient) { }
+
+  private handleError(error: Error, errorValue: any) {
+    console.error(error);
+    return of(errorValue); // of transforme une donnée simple en un flux de donnée (Observable) qui emmet la donnée en paramètre (errorValue)
+  }
 
   getTypes(): Observable<Type[]> {
     return this.http.get<Type[]>(this.apiTypeUrl);
@@ -34,5 +39,16 @@ export class PokemonService {
 
   deletePokemon(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiPokemonUrl}/${id}`);
+  }
+
+  searchPokemonList(term: string): Observable<Pokemon[]> {
+    if (term.length <= 1) {
+      return of([]) // of retourne la valeur sous forme d'un flux
+    }
+
+    return this.http.get<Pokemon[]>(`${this.apiPokemonUrl}/search?name=${term.toLowerCase()}`).pipe(
+      tap((resPokemonFiltred) => console.table(resPokemonFiltred)),
+      catchError((error) => this.handleError(error, []))
+    );
   }
 }

@@ -11,11 +11,10 @@ import { PokemonTypesColorPipe } from '../../pipes/pokemon-types-color.pipe';
   imports: [FormsModule, PokemonTypesColorPipe],
   templateUrl: './form-pokemon.component.html',
   styleUrl: './form-pokemon.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormPokemonComponent implements OnInit {
   @Input() pokemon: Pokemon;
-  types: Type[];
+  typesList: Type[];
   isAddForm: boolean;
 
   constructor(
@@ -25,15 +24,16 @@ export class FormPokemonComponent implements OnInit {
 
   ngOnInit() {
     this.pokemonService.getTypes().subscribe((data) => {
-      this.types = data;
+      this.typesList = data;
     });
     this.isAddForm = this.route.url.includes("add");
-    console.log(this.types);
   }
 
+  // Vérifie si le type est déjà dans les types du pokémon
   hasType(type: Type): boolean {
-    return this.pokemon.types.includes(type);
+    return this.pokemon.types.some(x => x.id === type.id);
   }
+
   selectType(type: Type): void {
     if (this.pokemon.types.length < 3) {
       this.pokemon.types.push(type)
@@ -56,7 +56,6 @@ export class FormPokemonComponent implements OnInit {
       num = pokemonNumber;
     }
 
-    console.log(typeof num);
     this.pokemon.picture = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${num}.png`
   }
 
@@ -69,6 +68,8 @@ export class FormPokemonComponent implements OnInit {
     }
     return true;
   }
+
+
 
   onSubmit(): void {
     if (this.isAddForm) {

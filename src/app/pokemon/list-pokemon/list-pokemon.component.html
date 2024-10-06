@@ -1,8 +1,10 @@
 <button class="add-button" (click)="goToAddForm()"></button>
 <h1>Pokédex</h1>
+<app-search-pokemon />
 <div class="conteneur">
   @for (pokemon of pokemonList; track $index) {
-  <div (click)="goToPokemon(pokemon.id)" class="degrade" pkmnBorderCard [hoverColor]="pokemon.types">
+  <button style="border: none;" (click)="goToPokemon(pokemon.id)" class="degrade" pkmnBorderCard
+    [hoverColor]="pokemon.types">
     <div class="item">
       <img src={{pokemon.picture}} alt="" srcset="">
       <div class="sous-item">
@@ -21,6 +23,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </button>
   }
 </div>

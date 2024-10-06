@@ -1,0 +1,13 @@
+<div class="search-container">
+  <h2>Quel pokémons voulez-vous chercher ?</h2>
+  <input #searchBox (keyup)="search(searchBox.value)" type="text">
+
+  <div class="search-list">
+    @for (pokemon of pokemons$ | async; track $index) {
+    <div (click)="goToDetailPokemon(pokemon.id)" class="search-item">
+      <img src={{pokemon.picture}} alt="Image de {{pokemon.name}}">
+      <p>{{pokemon.name}}</p>
+    </div>
+    }
+  </div>
+</div>

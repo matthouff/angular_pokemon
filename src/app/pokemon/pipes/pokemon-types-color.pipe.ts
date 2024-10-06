@@ -63,7 +63,11 @@ export class PokemonTypesColorPipe implements PipeTransform {
     // }
 
     // Si la luminosité est inférieure à 128, on considère la couleur comme foncée
-    return `background-color: ${type}; color: ${color}`;
+    return `
+    background-color: ${type}; 
+    color: ${color};
+    border: none;
+    `;
 
   }
 

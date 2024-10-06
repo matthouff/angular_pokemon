@@ -1,0 +1,33 @@
+.search-container {
+  box-shadow: 3px 3px 6px #0002;
+  border-radius: 20px;
+  max-width: 765px;
+  padding: 20px;
+  margin: 30px auto 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+
+  input {
+    font-size: 17px;
+    padding: 5px;
+  }
+
+
+  .search-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .search-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        height: 45px;
+      }
+    }
+  }
+}
