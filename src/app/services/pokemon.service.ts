@@ -7,8 +7,8 @@ import { Pokemon, Type } from '../pokemon/pokemon';
   providedIn: 'root', // Utilisation de 'root' pour une portée globale, mais pourrait aussi être omis dans un composant autonome.
 })
 export class PokemonService {
-  private apiPokemonUrl = 'http://localhost:/api/pokemon';
-  private apiTypeUrl = 'http://localhost:/api/type';
+  private apiPokemonUrl = 'http://localhost:8080/pokemon';
+  private apiTypeUrl = 'http://localhost:8080/type';
 
   constructor(private http: HttpClient) { }
 

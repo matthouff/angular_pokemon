@@ -16,3 +16,16 @@
   padding: 30px 30px 0;
   margin-bottom: 100px;
 }
+
+.status-invalid>div {
+  background-color: #9c0000 !important;
+}
+
+.status-valid {
+  background-color: #2f9c00;
+}
+
+.status-invalid,
+.status-valid {
+  color: #fff;
+}

@@ -1,0 +1,14 @@
+<div class="auth-form-component">
+  <h1>Connexion</h1>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+    <label for="email">Email</label>
+    <input id="email" type="text" [(ngModel)]="user.email" name="email" #name="ngModel">
+
+    <label for="psw">Mot de passe</label>
+    <input id="psw" type="password" [(ngModel)]="user.password" name="password" #name="ngModel">
+
+    <button [disabled]="!userForm.form.valid" class="submit" type="submit" (click)="onSubmit()">Connexion</button>
+  </form>
+  <button></button>
+</div>

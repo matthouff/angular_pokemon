@@ -1,0 +1,57 @@
+.auth-form-component {
+  padding: 30px;
+  box-shadow: 3px 3px 6px #0003;
+  max-width: 765px;
+  margin: auto;
+  border-radius: 30px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .psw-component {
+      display: flex;
+      gap: 30px;
+
+      &>div {
+        width: 100%;
+      }
+    }
+
+    .label-input {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    input {
+      padding: 5px 15px;
+      font-size: 17px;
+    }
+
+    button.submit {
+      color: #fff;
+      font-size: 17px;
+      width: fit-content;
+      padding: 5px 15px;
+      border-radius: 10px;
+      background-color: #00aaff;
+      outline: 2px solid #00aaff;
+      border: none;
+      align-self: flex-end;
+      cursor: pointer;
+      margin-top: 20px;
+
+      &:hover {
+        color: #00aaff;
+        background-color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<div class="auth-form-component">
+  <h1>Inscription</h1>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+    <div class="label-input">
+      <label for="email">Email</label>
+      <input id="email" type="email" [(ngModel)]="user.email" name="email" #name="ngModel">
+    </div>
+
+    <div class="psw-component">
+      <div class="label-input">
+        <label for="psw">Mot de passe</label>
+        <input id="psw" type="password" [(ngModel)]="user.password" name="password" #name="ngModel">
+      </div>
+      <div class="label-input">
+        <label for="passwordVerif">Confirmation du mot de passe</label>
+        <input id="passwordVerif" type="password" [(ngModel)]="passwordVerif" name="passwordVerif" #name="ngModel">
+      </div>
+    </div>
+
+    <div class="label-input">
+      <label for="prenom">Nom</label>
+      <input id="prenom" type="text" [(ngModel)]="user.lastname" name="lastname" #name="ngModel">
+    </div>
+
+    <div class="label-input">
+      <label for="name">prénom</label>
+      <input id="name" type="text" [(ngModel)]="user.name" name="name" #name="ngModel">
+    </div>
+
+    <button [disabled]="!userForm.form.valid" class="submit" type="submit">Connexion</button>
+  </form>
+</div>
