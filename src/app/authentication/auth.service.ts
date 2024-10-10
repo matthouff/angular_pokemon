@@ -17,6 +17,9 @@ export class AuthService {
     this.token = this.tokenSubject.asObservable();
   }
 
+
+  // VÉRIFICATION AUTHENTIFICATION //
+
   public get tokenValue(): string | null {
     return this.tokenSubject.value;
   }
@@ -31,13 +34,17 @@ export class AuthService {
     return !!token && !this.isTokenExpired(token); // Vérifie si le token est présent et valide
   }
 
+  //////////////////////
+
+
+
   login(email: string, password: string): Observable<any> {
     return this.http.post<any>(this.apiUserUrl + "/connexion", { email: email, password: password }).pipe(
       map(response => {
         if (response && response.bearer) {
           localStorage.setItem('token', response.bearer); // Enregistrer le token dans localStorage
           this.tokenSubject.next(response.bearer); // Mettre à jour le BehaviorSubject
-          this.router.navigate(['/pokemon-list']); // Rediriger vers une page protégée après la connexion
+          this.router.navigate(['/pokemon']); // Rediriger vers une page protégée après la connexion
         }
         return response;
       })
@@ -56,7 +63,7 @@ export class AuthService {
   }
 
   sendCode(code: string) {
-    return this.http.post<string>(this.apiUserUrl + "/activation", { code: code }).pipe(
+    return this.http.post<string>(this.apiUserUrl + "/activation", code).pipe(
       map(response => {
         if (response) {
           console.log('Compte activé');

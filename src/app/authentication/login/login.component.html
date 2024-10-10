@@ -8,7 +8,7 @@
     <label for="psw">Mot de passe</label>
     <input id="psw" type="password" [(ngModel)]="user.password" name="password" #name="ngModel">
 
-    <button [disabled]="!userForm.form.valid" class="submit" type="submit" (click)="onSubmit()">Connexion</button>
+    <button [disabled]="!userForm.form.valid" class="submit" type="submit">Connexion</button>
+    <a (click)="goToRegister()">Pas de compte ?</a>
   </form>
-  <button></button>
 </div>

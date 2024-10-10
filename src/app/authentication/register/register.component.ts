@@ -4,11 +4,25 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../services/notification-service.service';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogContent,
+    MatDialogTitle,
+  ],
   templateUrl: './register.component.html',
   styleUrl: '../auth.component.scss'
 })
@@ -21,6 +35,7 @@ export class RegisterComponent {
   message: string;
   hide: boolean = true;
   auth: AuthService;
+  dialogOpen = false;
 
 
   constructor(
@@ -33,6 +48,11 @@ export class RegisterComponent {
     this.auth = this.authService;
     this.user = new User()
   }
+
+  goToActivateCode() {
+    this.router.navigate(["codeActivation"])
+  }
+
   onSubmit(): void {
     this.authService.createUser(this.user).subscribe({
       next: (response) => {
@@ -41,12 +61,6 @@ export class RegisterComponent {
       error: (error) => {
         this.navBar.openSnackBar(error.error, error.ok, "Close");
       }
-    })
-  }
-
-  onCodeSubmit(): void {
-    this.authService.sendCode(this.code).subscribe((response: any) => {
-      console.log(response.error);
     })
   }
 }

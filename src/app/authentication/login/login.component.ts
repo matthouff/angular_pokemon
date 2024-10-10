@@ -16,6 +16,10 @@ export class LoginComponent {
   constructor(private authService: AuthService, private route: Router) { }
   @Input() user: { email: string, password: string } = { email: "", password: "" };
 
+  goToRegister() {
+    this.route.navigate(["register"])
+  }
+
   onSubmit(): void {
     this.authService.login(this.user.email, this.user.password).subscribe((response) => {
       console.log(response);

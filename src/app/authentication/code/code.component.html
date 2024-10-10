@@ -1,0 +1,13 @@
+<div class="auth-form-component">
+  <h1>Inscription</h1>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+    <div class="label-input">
+      <label for="code">Code</label>
+      <input id="code" type="code" [(ngModel)]="code" name="code" #code="ngModel">
+    </div>
+
+    <button [disabled]="!userForm.form.valid" class="submit" type="submit">Connexion</button>
+    <a (click)="goBack()">Retour</a>
+  </form>
+</div>

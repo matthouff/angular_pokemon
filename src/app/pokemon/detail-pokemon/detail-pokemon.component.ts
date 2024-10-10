@@ -28,7 +28,7 @@ export class DetailPokemonComponent implements OnInit {
   }
 
   goToPokemonList() {
-    this.route.navigate(["/pokemon-list"])
+    this.route.navigate(["/pokemon"])
   }
 
   goToEdit(pokemonId: number) {
@@ -40,7 +40,7 @@ export class DetailPokemonComponent implements OnInit {
       this.pokemonService.deletePokemon(pokemonId).subscribe(() => {
         // Suppression réussie, retirer le Pokémon de l'affichage
         this.pokemon = undefined;
-        this.route.navigate(["/pokemon-list"])
+        this.route.navigate(["/pokemon"])
       });
     }
 

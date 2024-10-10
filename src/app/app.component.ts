@@ -13,6 +13,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 export class AppComponent {
   constructor(private route: Router) { }
   goToPokedex() {
-    this.route.navigate(["/pokemon-list"])
+    this.route.navigate(["/pokemon"])
   }
 }
