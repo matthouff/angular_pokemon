@@ -1,13 +1,13 @@
 <div class="auth-form-component">
   <h1>Inscription</h1>
-  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #codeForm="ngForm">
 
     <div class="label-input">
       <label for="code">Code</label>
-      <input id="code" type="code" [(ngModel)]="code" name="code" #code="ngModel">
+      <input (change)="onChange(code.value)" id="code" type="string" #code name="code">
     </div>
 
-    <button [disabled]="!userForm.form.valid" class="submit" type="submit">Connexion</button>
+    <button [disabled]="!codeForm.form.valid" class="submit" type="submit">Connexion</button>
     <a (click)="goBack()">Retour</a>
   </form>
 </div>

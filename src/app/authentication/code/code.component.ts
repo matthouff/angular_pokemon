@@ -10,10 +10,13 @@ import { AuthService } from '../auth.service';
   templateUrl: './code.component.html',
 })
 export class CodeComponent {
-  @Input() code: string;
+  code: string;
 
   constructor(private route: Location, private authService: AuthService) { }
 
+  onChange(code: string) {
+    this.code = code;
+  }
 
   goBack() {
     this.route.back();

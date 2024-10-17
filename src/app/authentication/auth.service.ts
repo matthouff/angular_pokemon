@@ -63,10 +63,11 @@ export class AuthService {
   }
 
   sendCode(code: string) {
-    return this.http.post<string>(this.apiUserUrl + "/activation", code).pipe(
+    console.log(code);
+    return this.http.post<string>(this.apiUserUrl + "/activation", { code: code }).pipe(
       map(response => {
         if (response) {
-          console.log('Compte activé');
+          return response;
         }
         return response;
       })
